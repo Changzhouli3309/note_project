@@ -8,7 +8,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 
-//mongodb+srv://test_user1:RNJz0sZwN7frCz02@note-project-database.l7kb8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/new-note-project-db",
   { useNewUrlParser: true, useUnifiedTopology: true, autoIndex: true },
