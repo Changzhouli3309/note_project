@@ -35,9 +35,9 @@ const NoteService = {
       return { error: error };
     }
   },
-  updateNote : async (note) => {
+  updateNote: async (note) => {
     try {
-      const res = await fetch("/user/updatenote/"+note.id, {
+      const res = await fetch("/user/updatenote/" + note.id, {
         method: "put",
         body: JSON.stringify(note),
         headers: {
@@ -58,7 +58,11 @@ const NoteService = {
   },
   deleteNote: async (noteid) => {
     try {
-      const res = await fetch("/user//deletenote/"+noteid);
+      const res = await fetch("/user/deletenote/" + noteid, {
+        method: "delete",
+        headers: { "Content-type": "application/json" }
+      }
+      );
       if (res.status !== 401) {
         const data = await res.json();
         return data;
