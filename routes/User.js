@@ -105,11 +105,13 @@ userRouter.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const note = new Note({
+      creatTime: req.body.creatTime,
       title: req.body.title,
       sender: req.body.sender,
       content: req.body.content,
       tags: req.body.tags,
       voters: req.body.voters,
+      comments: req.body.comments,
     });
     note.save((err) => {
       if (err) {
@@ -151,11 +153,13 @@ userRouter.get(
 //Update post route
 userRouter.put("/updatenote/:id", (req, res) => {
   const note = new Note({
+    creatTime: req.body.creatTime,
     title: req.body.title,
     sender: req.body.sender,
     content: req.body.content,
     tags: req.body.tags,
     voters: req.body.voters,
+    comments: req.body.comments,
   });
   const _id = req.params.id;
   note.findByIdAndUpdate(_id, { title, content }, (err) => {
