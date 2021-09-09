@@ -106,9 +106,10 @@ userRouter.post(
   (req, res) => {
     const note = new Note({
       title: req.body.title,
-      sender: req.user.username,
+      sender: req.body.sender,
       content: req.body.content,
-      voter: req.body.voter,
+      tags: req.body.tags,
+      voters: req.body.voters,
     });
     note.save((err) => {
       if (err) {
@@ -151,9 +152,10 @@ userRouter.get(
 userRouter.put("/updatenote/:id", (req, res) => {
   const note = new Note({
     title: req.body.title,
-    sender: req.body.username,
+    sender: req.body.sender,
     content: req.body.content,
-    voter: req.body.voter,
+    tags: req.body.tags,
+    voters: req.body.voters,
   });
   const _id = req.params.id;
   note.findByIdAndUpdate(_id, { title, content }, (err) => {

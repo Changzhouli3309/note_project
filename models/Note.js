@@ -8,12 +8,16 @@ const NoteSchema = mongoose.Schema({
     },
     sender: {
         type: String,
+        required: true,
     },
     content: {
         type: String,
         required: true,
     },
-    voter: {
+    tags: {
+        type: [String],
+    },
+    voters: {
         type: [String],
     },
 });
