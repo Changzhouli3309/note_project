@@ -12,6 +12,10 @@ const tagsX = {
     urgent: Boolean
 }
 
+const votersR = {
+    voterName: String
+}
+
 const NoteSchema = mongoose.Schema({    
     date:{
         type: String,
@@ -33,17 +37,20 @@ const NoteSchema = mongoose.Schema({
         type: tagsX,
     },
     upvote: {
-        type: [String],
+        type: Number
     },
     replayss: {
-        type: [comment],
+        type: [comment]
     },   
     replays: {
-        type: Number,
+        type: Number
     },
     theme: {
-        type: Number,     
+        type: Number        
     },
+    voters: {
+        type: [String],
+    }
 });
 
 module.exports = mongoose.model("Note", NoteSchema);

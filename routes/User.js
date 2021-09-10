@@ -174,10 +174,11 @@ userRouter.put("/updatenote/:id", (req, res) => {
   const nummer = req.body.upvote;
   const replayX = req.body.replayy;
   const replayN = req.body.replays;
+  const votersI = req.body.voters;
  
-  console.log(replayX);
+  console.log(votersI);
 
-  Note.findByIdAndUpdate(_id, { message: SIGMA, upvote: nummer, replayss: replayX,  replays: replayN}, (err) => {
+  Note.findByIdAndUpdate(_id, { message: SIGMA, upvote: nummer, replayss: replayX,  replays: replayN, voters: votersI}, (err) => {
     if (err) {
       res.status(500).json({ message: "An error occured updating" });
     } else {
