@@ -33,16 +33,16 @@ const NoteSchema = mongoose.Schema({
         type: tagsX,
     },
     upvote: {
-        type: Number
+        type: [String],
     },
     replayss: {
-        type: [comment]
+        type: [comment],
     },   
     replays: {
-        type: Number
+        type: Number,
     },
     theme: {
-        type: Number        
+        type: Number,     
     },
 });
 
