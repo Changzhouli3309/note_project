@@ -6,32 +6,44 @@ const comment = {
     content: String
 }
 
-const NoteSchema = mongoose.Schema({
-    creatTime:{
-        type: Date,
-        require: true,
+const tagsX = {
+    fun: Boolean,
+    meta: Boolean,
+    urgent: Boolean
+}
+
+const NoteSchema = mongoose.Schema({    
+    date:{
+        type: String,
+        required: true,
     },
     title: {
         type: String,
         required: true,
     },
-    sender: {
+    author: {
         type: String,
         required: true,
     },
-    content: {
+    message: {
         type: String,
         required: true,
     },
     tags: {
-        type: [String],
+        type: tagsX,
     },
-    voters: {
-        type: [String],
+    upvote: {
+        type: Number
     },
-    comments: {
+    replayss: {
         type: [comment]
-    }
+    },   
+    replays: {
+        type: Number
+    },
+    theme: {
+        type: Number        
+    },
 });
 
 module.exports = mongoose.model("Note", NoteSchema);

@@ -105,13 +105,15 @@ userRouter.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const note = new Note({
-      creatTime: req.body.creatTime,
+      date: req.body.date,
       title: req.body.title,
-      sender: req.body.sender,
-      content: req.body.content,
+      author: req.body.author,
+      message: req.body.message,
       tags: req.body.tags,
-      voters: req.body.voters,
-      comments: req.body.comments,
+      upvote: req.body.upvote,
+      replayss: req.body.replayss,
+      replays: req.body.replays,
+      theme: req.body.theme
     });
     note.save((err) => {
       if (err) {
@@ -150,19 +152,32 @@ userRouter.get(
   }
 );
 
+
+
 //Update post route
 userRouter.put("/updatenote/:id", (req, res) => {
-  const note = new Note({
-    creatTime: req.body.creatTime,
-    title: req.body.title,
-    sender: req.body.sender,
-    content: req.body.content,
-    tags: req.body.tags,
-    voters: req.body.voters,
-    comments: req.body.comments,
-  });
+  /*const note = new Note({
+      date: req.body.date,
+      title: req.body.title,
+      author: req.body.author,
+      message: req.body.message,
+      tags: req.body.tags,
+      upvote: req.body.upvote,
+      replayss: req.body.replayss,
+      replays: req.body.replays,
+      theme: req.body.theme
+  });*/
+
   const _id = req.params.id;
-  note.findByIdAndUpdate(_id, { title, content }, (err) => {
+  
+  const SIGMA = req.body.message;
+  const nummer = req.body.upvote;
+  const replayX = req.body.replayy;
+  const replayN = req.body.replays;
+ 
+  console.log(replayX);
+
+  Note.findByIdAndUpdate(_id, { message: SIGMA, upvote: nummer, replayss: replayX,  replays: replayN}, (err) => {
     if (err) {
       res.status(500).json({ message: "An error occured updating" });
     } else {
