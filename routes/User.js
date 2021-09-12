@@ -80,6 +80,7 @@ userRouter.get(
     res.status(200).json({
       isAuthenticated: true,
       user: { _id, username },
+      message: { msgBody: "Authorized", msgError: false },
     });
   }
 );
@@ -136,8 +137,9 @@ userRouter.post(
 //get all
 userRouter.get(
   "/getnotes",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
+ 
+  (req, res) => {  
+
     Note.find({}, (err, notes) => {
       if (err) {
         res.status(500).json({
@@ -156,17 +158,6 @@ userRouter.get(
 
 //Update post route
 userRouter.put("/updatenote/:id", (req, res) => {
-  /*const note = new Note({
-      date: req.body.date,
-      title: req.body.title,
-      author: req.body.author,
-      message: req.body.message,
-      tags: req.body.tags,
-      upvote: req.body.upvote,
-      replayss: req.body.replayss,
-      replays: req.body.replays,
-      theme: req.body.theme
-  });*/
 
   const _id = req.params.id;
   
